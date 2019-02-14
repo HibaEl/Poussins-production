@@ -23,6 +23,7 @@ public class UserRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String reference;
     private String libelle;
 
     public Long getId() {
@@ -41,11 +42,20 @@ public class UserRole implements Serializable {
         this.libelle = libelle;
     }
 
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.libelle);
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.reference);
+        hash = 83 * hash + Objects.hashCode(this.libelle);
         return hash;
     }
 
@@ -61,6 +71,9 @@ public class UserRole implements Serializable {
             return false;
         }
         final UserRole other = (UserRole) obj;
+        if (!Objects.equals(this.reference, other.reference)) {
+            return false;
+        }
         if (!Objects.equals(this.libelle, other.libelle)) {
             return false;
         }
@@ -72,8 +85,10 @@ public class UserRole implements Serializable {
 
     @Override
     public String toString() {
-        return "UserRole{" + "id=" + id + ", libelle=" + libelle + '}';
+        return "UserRole{" + "id=" + id + ", reference=" + reference + ", libelle=" + libelle + '}';
     }
+
+    
 
 
     

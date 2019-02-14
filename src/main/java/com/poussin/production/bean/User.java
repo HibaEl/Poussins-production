@@ -24,6 +24,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String reference;
     private String login;
     private String password;
     private int nbConexion;
@@ -34,6 +35,14 @@ public class User implements Serializable {
     public Long getId() {
         return id;
         
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public void setId(Long id) {
@@ -82,8 +91,9 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.reference);
         hash = 17 * hash + Objects.hashCode(this.login);
         hash = 17 * hash + Objects.hashCode(this.password);
         hash = 17 * hash + this.nbConexion;
@@ -110,6 +120,9 @@ public class User implements Serializable {
         if (this.bloquer != other.bloquer) {
             return false;
         }
+        if (!Objects.equals(this.reference, other.reference)) {
+            return false;
+        }
         if (!Objects.equals(this.login, other.login)) {
             return false;
         }
@@ -127,9 +140,10 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", nbConexion=" + nbConexion + ", bloquer=" + bloquer + ", role=" + role + '}';
+        return "User{" + "id=" + id + ", reference=" + reference + ", login=" + login + ", password=" + password + ", nbConexion=" + nbConexion + ", bloquer=" + bloquer + ", role=" + role + '}';
     }
 
+    
     
     
 }
