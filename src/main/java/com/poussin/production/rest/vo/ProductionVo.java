@@ -7,7 +7,6 @@ package com.poussin.production.rest.vo;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -18,13 +17,12 @@ public class ProductionVo implements Serializable{
         
 
     private String reference;
-    private double poids;
-    private int nbrMort;
-    private int nbrOeuf;
-    private int nbrPoussinMale;
-    private int nbrPoussinFemale;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateProduction;
+    private String poids;
+    private String nbrMort;
+    private String nbrOeuf;
+    private String nbrPoussinMale;
+    private String nbrPoussinFemale;
+    private String dateProduction;
     private String refFirme;
     private String refEvolution;
 
@@ -38,53 +36,55 @@ public class ProductionVo implements Serializable{
         this.reference = reference;
     }
 
-    public double getPoids() {
+    public String getPoids() {
         return poids;
     }
 
-    public void setPoids(double poids) {
+    public void setPoids(String poids) {
         this.poids = poids;
     }
 
-    public int getNbrMort() {
+    public String getNbrMort() {
         return nbrMort;
     }
 
-    public void setNbrMort(int nbrMort) {
+    public void setNbrMort(String nbrMort) {
         this.nbrMort = nbrMort;
     }
 
-    public int getNbrOeuf() {
+    public String getNbrOeuf() {
         return nbrOeuf;
     }
 
-    public void setNbrOeuf(int nbrOeuf) {
+    public void setNbrOeuf(String nbrOeuf) {
         this.nbrOeuf = nbrOeuf;
     }
 
-    public int getNbrPoussinMale() {
+    public String getNbrPoussinMale() {
         return nbrPoussinMale;
     }
 
-    public void setNbrPoussinMale(int nbrPoussinMale) {
+    public void setNbrPoussinMale(String nbrPoussinMale) {
         this.nbrPoussinMale = nbrPoussinMale;
     }
 
-    public int getNbrPoussinFemale() {
+    public String getNbrPoussinFemale() {
         return nbrPoussinFemale;
     }
 
-    public void setNbrPoussinFemale(int nbrPoussinFemale) {
+    public void setNbrPoussinFemale(String nbrPoussinFemale) {
         this.nbrPoussinFemale = nbrPoussinFemale;
     }
 
-    public Date getDateProduction() {
+    public String getDateProduction() {
         return dateProduction;
     }
 
-    public void setDateProduction(Date dateProduction) {
+    public void setDateProduction(String dateProduction) {
         this.dateProduction = dateProduction;
     }
+
+   
 
     public String getRefFirme() {
         return refFirme;

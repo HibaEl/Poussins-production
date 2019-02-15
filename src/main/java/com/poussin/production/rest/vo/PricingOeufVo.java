@@ -7,7 +7,6 @@ package com.poussin.production.rest.vo;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -16,11 +15,9 @@ import javax.persistence.Temporal;
 public class PricingOeufVo implements Serializable {
    private static final long serialVersionUID = 1L;
     private String reference; 
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateMin;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateMax;
-    private double prix;
+    private String dateMin;
+    private String dateMax;
+    private String prix;
 
     public String getReference() {
         return reference;
@@ -30,29 +27,31 @@ public class PricingOeufVo implements Serializable {
         this.reference = reference;
     }
 
-    public Date getDateMin() {
+    public String getDateMin() {
         return dateMin;
     }
 
-    public void setDateMin(Date dateMin) {
+    public void setDateMin(String dateMin) {
         this.dateMin = dateMin;
     }
 
-    public Date getDateMax() {
+    public String getDateMax() {
         return dateMax;
     }
 
-    public void setDateMax(Date dateMax) {
+    public void setDateMax(String dateMax) {
         this.dateMax = dateMax;
     }
 
-    public double getPrix() {
+    public String getPrix() {
         return prix;
     }
 
-    public void setPrix(double prix) {
+    public void setPrix(String prix) {
         this.prix = prix;
     }
+
+  
     
     
 }

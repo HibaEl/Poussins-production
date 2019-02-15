@@ -14,38 +14,34 @@ import java.util.List;
  *
  * @author LENOVO
  */
-public class UserRoleVoConverter {
-   public UserRole toItem(UserRoleVo userRoleVo) {
+public class UserRoleVoConverter implements AbstractConverter<UserRole, UserRoleVo> {
+
+    @Override
+    public UserRole toItem(UserRoleVo userRoleVo) {
         UserRole userRole = new UserRole();
         if (userRoleVo != null) {
 
-            if (userRoleVo.getLibelle() != null) {
-                userRole.setLibelle(userRoleVo.getLibelle());
-            }
-            if (userRoleVo.getReference() != null) {
-                userRole.setReference(userRoleVo.getReference());
-            }
-          
+            userRole.setLibelle(userRoleVo.getLibelle());
+            userRole.setReference(userRoleVo.getReference());
+
         }
         return userRole;
     }
 
+    @Override
     public UserRoleVo toVo(UserRole userRole) {
         UserRoleVo userRoleVo = new UserRoleVo();
 
         if (userRole != null) {
-            if (userRole.getLibelle() != null) {
-                userRoleVo.setLibelle(userRole.getLibelle());
-            }
-            if (userRole.getReference() != null) {
-                userRoleVo.setReference(userRole.getReference());
-            }
-          
+            userRoleVo.setLibelle(userRole.getLibelle());
+            userRoleVo.setReference(userRole.getReference());
+
         }
         return userRoleVo;
     }
-    
-     public List<UserRoleVo> toVo(List<UserRole> userRoles) {
+
+    @Override
+    public List<UserRoleVo> toVo(List<UserRole> userRoles) {
         List<UserRoleVo> userRoleVos = new ArrayList();
         if (userRoles != null && !userRoles.isEmpty()) {
             for (UserRole userRole : userRoles) {
@@ -54,5 +50,5 @@ public class UserRoleVoConverter {
         }
         return userRoleVos;
     }
-  
+
 }

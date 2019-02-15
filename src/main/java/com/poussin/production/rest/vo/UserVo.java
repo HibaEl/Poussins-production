@@ -15,8 +15,8 @@ public class UserVo implements Serializable {
   private static final long serialVersionUID = 1L;
     private String login;
     private String password;
-    private int nbConexion;
-    private int bloquer;
+    private String nbConexion;
+    private String bloquer;
     private String reference;
     private UserRoleVo roleVo;
 
@@ -44,21 +44,23 @@ public class UserVo implements Serializable {
         this.password = password;
     }
 
-    public int getNbConexion() {
+    public String getNbConexion() {
         return nbConexion;
     }
 
-    public void setNbConexion(int nbConexion) {
+    public void setNbConexion(String nbConexion) {
         this.nbConexion = nbConexion;
     }
 
-    public int getBloquer() {
+    public String getBloquer() {
         return bloquer;
     }
 
-    public void setBloquer(int bloquer) {
+    public void setBloquer(String bloquer) {
         this.bloquer = bloquer;
     }
+
+   
 
     public UserRoleVo getRoleVo() {
         return roleVo;
