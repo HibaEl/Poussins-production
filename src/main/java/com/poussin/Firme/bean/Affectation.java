@@ -32,7 +32,7 @@ public class Affectation implements Serializable {
     private String refe;
     private String referenceImport;
     @ManyToOne
-    Firme firme;
+    private Firme firme;
     
     
 
