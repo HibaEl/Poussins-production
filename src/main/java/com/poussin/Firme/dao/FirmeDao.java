@@ -23,11 +23,8 @@ public interface FirmeDao extends JpaRepository<Firme, Long> {
 
     @Query("select f from Firme f where f.placeRestant > :nbrPlace")
     public List<Firme> findByPlaceRestantGreaterThan(@Param("nbrPlace") int nbrPlace);
-    
-    
-    @Query("select f from Firme f where f.nom = :nomFirme")
-    public Firme findByName (@Param("nomFirme") String nomFirme);
-    
-    
+
+    @Query("select r from Firme r where r.nom = :nomFirme")
+    public Firme findByName(@Param("nomFirme") String nomFirme);
 
 }

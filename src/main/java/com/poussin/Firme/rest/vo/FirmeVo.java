@@ -13,7 +13,7 @@ import java.util.List;
  * @author Elitebook folio
  */
 public class FirmeVo {
-    
+
     private Long id;
     private String nom;
     private String capacite;
@@ -95,7 +95,5 @@ public class FirmeVo {
     public void setAffectationVo(List<AffectationVo> affectationVo) {
         this.affectationVo = affectationVo;
     }
-    
-    
-    
+
 }

@@ -50,7 +50,7 @@ public class Firme implements Serializable {
         return nom;
     }
 
-    public void setNom(String nom) {           
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
