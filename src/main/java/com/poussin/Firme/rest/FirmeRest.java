@@ -7,6 +7,7 @@ package com.poussin.Firme.rest;
 
 import com.poussin.Firme.bean.Firme;
 import com.poussin.Firme.service.FirmeService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,11 @@ public class FirmeRest {
         return firmeService.findByReference(reference);
     }
 
+    @GetMapping("/nbrPlace/{nbrPlace}")
+    public List<Firme> findByPlaceRestantGreaterThan(@PathVariable int nbrPlace) {
+        return firmeService.findByPlaceRestantGreaterThan(nbrPlace);
+    }
+
     public FirmeService getFirmeService() {
         return firmeService;
     }
@@ -43,7 +49,5 @@ public class FirmeRest {
     public void setFirmeService(FirmeService firmeService) {
         this.firmeService = firmeService;
     }
-    
-    
 
 }

@@ -33,6 +33,11 @@ public class FirmeServiceImpl implements FirmeService {
     }
 
     @Override
+    public List<Firme> findByPlaceRestantGreaterThan(int nbrPlace) {
+        return firmeDao.findByPlaceRestantGreaterThan(nbrPlace);
+    }
+
+    @Override
     public int creer(Firme firme) {
         Firme f = findByReference(firme.getReference());
         if (f != null) {
@@ -54,10 +59,10 @@ public class FirmeServiceImpl implements FirmeService {
         int totalPoussinFemale = 0;
         if (affectations != null && !affectations.isEmpty()) {
             for (Affectation affectation : affectations) {
-                totalPoussinFemale+=affectation.getNbrFemale();
-                totalPoussinMale+=affectation.getNbrMale();
+                totalPoussinFemale += affectation.getNbrFemale();
+                totalPoussinMale += affectation.getNbrMale();
                 totalPoussin += affectation.getNbrFemale() + affectation.getNbrMale();
-                
+
             }
             firme.setTotalPoussin(totalPoussin);
             firme.setNbrPoussinFemale(totalPoussinFemale);

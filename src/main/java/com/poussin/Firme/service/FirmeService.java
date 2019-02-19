@@ -6,6 +6,7 @@
 package com.poussin.Firme.service;
 
 import com.poussin.Firme.bean.Firme;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,5 +19,7 @@ public interface FirmeService {
     public Firme findByReference(String reference);
 
     public int creer(Firme firme);
+
+    public List<Firme> findByPlaceRestantGreaterThan(int nbrPlace);
 
 }

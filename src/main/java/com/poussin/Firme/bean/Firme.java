@@ -5,6 +5,8 @@
  */
 package com.poussin.Firme.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -34,10 +36,12 @@ public class Firme implements Serializable {
     @OneToMany(mappedBy = "firme")
     private List<Affectation> affectations;
 
+    @JsonIgnore
     public List<Affectation> getAffectations() {
         return affectations;
     }
 
+    @JsonSetter
     public void setAffectations(List<Affectation> affectations) {
         this.affectations = affectations;
     }
