@@ -41,7 +41,14 @@ public class FirmeRest {
     public List<Firme> findByPlaceRestantGreaterThan(@PathVariable int nbrPlace) {
         return firmeService.findByPlaceRestantGreaterThan(nbrPlace);
     }
+    
+     @GetMapping("/nomFirme/{nomFirme}")
+    public Firme findByName(@PathVariable String nomFirme) {
+        return firmeService.findByName(nomFirme);
+    }
 
+    
+    
     public FirmeService getFirmeService() {
         return firmeService;
     }

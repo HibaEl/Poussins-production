@@ -38,6 +38,11 @@ public class FirmeServiceImpl implements FirmeService {
     }
 
     @Override
+    public Firme findByName(String nomFirme) {
+        return firmeDao.findByName(nomFirme);
+    }
+
+    @Override
     public int creer(Firme firme) {
         Firme f = findByReference(firme.getReference());
         if (f != null) {

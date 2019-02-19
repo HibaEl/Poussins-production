@@ -21,5 +21,7 @@ public interface FirmeService {
     public int creer(Firme firme);
 
     public List<Firme> findByPlaceRestantGreaterThan(int nbrPlace);
+    
+    public Firme findByName(String nomFirme);
 
 }
