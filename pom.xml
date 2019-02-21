@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.poussin</groupId>
-	<artifactId>production</artifactId>
+	<artifactId>poussin-api-production</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>production</name>
+	<name>poussin-api-production</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

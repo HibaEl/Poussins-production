@@ -6,6 +6,7 @@
 package com.poussin.production.rest.converter;
 
 import com.poussin.production.bean.Production;
+import com.poussin.production.commun.util.DateUtil;
 import com.poussin.production.commun.util.NumberUtil;
 import com.poussin.production.rest.vo.ProductionVo;
 import java.util.ArrayList;
@@ -30,6 +31,10 @@ public class ProductionVoConverter implements AbstractConverter<Production, Prod
             production.setRefEvolution(productionVo.getRefEvolution());
             production.setRefFirme(productionVo.getRefFirme());
             production.setReference(productionVo.getReference());
+            production.setDateProduction(DateUtil.parse(productionVo.getDateProduction()));
+            production.setMoisProduction(NumberUtil.toInteger(productionVo.getMoisProduction()));
+            production.setSemaineProduction(NumberUtil.toInteger(productionVo.getSemaineProduction()));
+            production.setAnneeProduction(NumberUtil.toInteger(productionVo.getAnneeProduction()));
 
         }
         return production;
@@ -49,6 +54,10 @@ public class ProductionVoConverter implements AbstractConverter<Production, Prod
             productionVo.setPoids(NumberUtil.toStringDouble(production.getPoids()));
             productionVo.setRefEvolution(production.getRefEvolution());
             productionVo.setRefFirme(production.getRefFirme());
+            productionVo.setDateProduction(DateUtil.formateDate("yyyy-MM-dd",production.getDateProduction()));
+            productionVo.setMoisProduction(NumberUtil.toStringInt(production.getMoisProduction()));
+            productionVo.setSemaineProduction(NumberUtil.toStringInt(production.getSemaineProduction()));
+            productionVo.setAnneeProduction(NumberUtil.toStringInt(production.getAnneeProduction()));
 
         }
         return productionVo;

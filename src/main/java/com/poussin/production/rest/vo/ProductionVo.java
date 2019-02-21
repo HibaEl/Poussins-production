@@ -6,15 +6,15 @@
 package com.poussin.production.rest.vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Objects;
 
 /**
  *
  * @author LENOVO
  */
-public class ProductionVo implements Serializable{
-   private static final long serialVersionUID = 1L;
-        
+public class ProductionVo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String reference;
     private String poids;
@@ -25,8 +25,17 @@ public class ProductionVo implements Serializable{
     private String dateProduction;
     private String refFirme;
     private String refEvolution;
+    private String semaineProduction;
+    private String moisProduction;
+    private String anneeProduction;
 
- 
+    public String getAnneeProduction() {
+        return anneeProduction;
+    }
+
+    public void setAnneeProduction(String anneeProduction) {
+        this.anneeProduction = anneeProduction;
+    }
 
     public String getReference() {
         return reference;
@@ -84,8 +93,6 @@ public class ProductionVo implements Serializable{
         this.dateProduction = dateProduction;
     }
 
-   
-
     public String getRefFirme() {
         return refFirme;
     }
@@ -101,7 +108,24 @@ public class ProductionVo implements Serializable{
     public void setRefEvolution(String refEvolution) {
         this.refEvolution = refEvolution;
     }
-    
-    
-    
+
+    public String getSemaineProduction() {
+        return semaineProduction;
+    }
+
+    public void setSemaineProduction(String semaineProduction) {
+        this.semaineProduction = semaineProduction;
+    }
+
+    public String getMoisProduction() {
+        return moisProduction;
+    }
+
+    public void setMoisProduction(String moisProduction) {
+        this.moisProduction = moisProduction;
+    }
+
+   
+   
+
 }

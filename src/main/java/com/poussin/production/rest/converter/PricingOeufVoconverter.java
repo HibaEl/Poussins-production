@@ -6,6 +6,7 @@
 package com.poussin.production.rest.converter;
 
 import com.poussin.production.bean.PricingOeuf;
+import com.poussin.production.commun.util.DateUtil;
 import com.poussin.production.commun.util.NumberUtil;
 import com.poussin.production.rest.vo.PricingOeufVo;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class PricingOeufVoconverter implements AbstractConverter<PricingOeuf, Pr
 
             pricingOeuf.setReference(pricingOeufVo.getReference());
             pricingOeuf.setPrix(NumberUtil.toDouble(pricingOeufVo.getPrix()));
+            pricingOeuf.setDateMax(DateUtil.parse(pricingOeufVo.getDateMax()));
+            pricingOeuf.setDateMin(DateUtil.parse(pricingOeufVo.getDateMin()));
 
         }
         return pricingOeuf;
@@ -37,6 +40,9 @@ public class PricingOeufVoconverter implements AbstractConverter<PricingOeuf, Pr
 
             pricingOeufVo.setReference(pricingOeuf.getReference());
             pricingOeufVo.setPrix(NumberUtil.toStringDouble(pricingOeuf.getPrix()));
+            pricingOeufVo.setDateMax(DateUtil.formateDate("yyyy-MM-dd",pricingOeuf.getDateMax()));
+            pricingOeufVo.setDateMin(DateUtil.formateDate("yyyy-MM-dd",pricingOeuf.getDateMin()));
+
         }
 
         return pricingOeufVo;

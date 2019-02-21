@@ -29,13 +29,16 @@ public class Production implements Serializable {
     private String reference;
     private double poids;
     private int nbrMort;
-    private int nbrOeuf;
+    private Integer nbrOeuf;
     private int nbrPoussinMale;
     private int nbrPoussinFemale;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateProduction;
     private String refFirme;
     private String refEvolution;
+    private Integer semaineProduction;
+    private Integer moisProduction;
+    private Integer anneeProduction;
 
     public Long getId() {
         return id;
@@ -69,11 +72,11 @@ public class Production implements Serializable {
         this.nbrMort = nbrMort;
     }
 
-    public int getNbrOeuf() {
+    public Integer getNbrOeuf() {
         return nbrOeuf;
     }
 
-    public void setNbrOeuf(int nbrOeuf) {
+    public void setNbrOeuf(Integer nbrOeuf) {
         this.nbrOeuf = nbrOeuf;
     }
 
@@ -117,19 +120,46 @@ public class Production implements Serializable {
         this.refEvolution = refEvolution;
     }
 
+    public Integer getSemaineProduction() {
+        return semaineProduction;
+    }
+
+    public void setSemaineProduction(Integer semaineProduction) {
+        this.semaineProduction = semaineProduction;
+    }
+
+    public Integer getMoisProduction() {
+        return moisProduction;
+    }
+
+    public void setMoisProduction(Integer moisProduction) {
+        this.moisProduction = moisProduction;
+    }
+
+    public Integer getAnneeProduction() {
+        return anneeProduction;
+    }
+
+    public void setAnneeProduction(Integer anneeProduction) {
+        this.anneeProduction = anneeProduction;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.id);
-        hash = 83 * hash + Objects.hashCode(this.reference);
-        hash = 83 * hash + (int) (Double.doubleToLongBits(this.poids) ^ (Double.doubleToLongBits(this.poids) >>> 32));
-        hash = 83 * hash + this.nbrMort;
-        hash = 83 * hash + this.nbrOeuf;
-        hash = 83 * hash + this.nbrPoussinMale;
-        hash = 83 * hash + this.nbrPoussinFemale;
-        hash = 83 * hash + Objects.hashCode(this.dateProduction);
-        hash = 83 * hash + Objects.hashCode(this.refFirme);
-        hash = 83 * hash + Objects.hashCode(this.refEvolution);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.reference);
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.poids) ^ (Double.doubleToLongBits(this.poids) >>> 32));
+        hash = 59 * hash + this.nbrMort;
+        hash = 59 * hash + Objects.hashCode(this.nbrOeuf);
+        hash = 59 * hash + this.nbrPoussinMale;
+        hash = 59 * hash + this.nbrPoussinFemale;
+        hash = 59 * hash + Objects.hashCode(this.dateProduction);
+        hash = 59 * hash + Objects.hashCode(this.refFirme);
+        hash = 59 * hash + Objects.hashCode(this.refEvolution);
+        hash = 59 * hash + Objects.hashCode(this.semaineProduction);
+        hash = 59 * hash + Objects.hashCode(this.moisProduction);
+        hash = 59 * hash + Objects.hashCode(this.anneeProduction);
         return hash;
     }
 
@@ -151,9 +181,6 @@ public class Production implements Serializable {
         if (this.nbrMort != other.nbrMort) {
             return false;
         }
-        if (this.nbrOeuf != other.nbrOeuf) {
-            return false;
-        }
         if (this.nbrPoussinMale != other.nbrPoussinMale) {
             return false;
         }
@@ -172,7 +199,19 @@ public class Production implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (!Objects.equals(this.nbrOeuf, other.nbrOeuf)) {
+            return false;
+        }
         if (!Objects.equals(this.dateProduction, other.dateProduction)) {
+            return false;
+        }
+        if (!Objects.equals(this.semaineProduction, other.semaineProduction)) {
+            return false;
+        }
+        if (!Objects.equals(this.moisProduction, other.moisProduction)) {
+            return false;
+        }
+        if (!Objects.equals(this.anneeProduction, other.anneeProduction)) {
             return false;
         }
         return true;
@@ -180,9 +219,9 @@ public class Production implements Serializable {
 
     @Override
     public String toString() {
-        return "Production{" + "id=" + id + ", reference=" + reference + ", poids=" + poids + ", nbrMort=" + nbrMort + ", nbrOeuf=" + nbrOeuf + ", nbrPoussinMale=" + nbrPoussinMale + ", nbrPoussinFemale=" + nbrPoussinFemale + ", dateProduction=" + dateProduction + ", refFirme=" + refFirme + ", refEvolution=" + refEvolution + '}';
+        return "Production{" + "id=" + id + ", reference=" + reference + ", poids=" + poids + ", nbrMort=" + nbrMort + ", nbrOeuf=" + nbrOeuf + ", nbrPoussinMale=" + nbrPoussinMale + ", nbrPoussinFemale=" + nbrPoussinFemale + ", dateProduction=" + dateProduction + ", refFirme=" + refFirme + ", refEvolution=" + refEvolution + ", semaineProduction=" + semaineProduction + ", moisProduction=" + moisProduction + ", anneeProduction=" + anneeProduction + '}';
     }
 
-   
     
+
 }
