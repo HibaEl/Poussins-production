@@ -5,7 +5,14 @@
  */
 package com.poussin.production.rest;
 
+/**
+ *
+ * @author LENOVO
+ */ 
+
 import com.poussin.production.bean.Production;
+import com.poussin.production.rest.converter.ProductionVoConverter;
+import com.poussin.production.rest.vo.ProductionVo;
 import com.poussin.production.service.ProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +33,8 @@ public class ProductionRest {
     
    
 @PostMapping("/")
-    public int createProduction(@RequestBody Production production) {
+    public int createProduction(@RequestBody ProductionVo productionVo) {
+        Production production= new ProductionVoConverter().toItem(productionVo);
         return productionService.createProduction(production);
     }
 @GetMapping("/semaineProduction/{semaine}/refFirme/{refFirme}/anneeProduction/{annee}")
