@@ -10,6 +10,7 @@ package com.poussin.Firme.rest.vo;
  * @author Elitebook folio
  */
 public class AffectationVo {
+
     private Long id;
     private String nbrMale;
     private String nbrFemale;
@@ -73,7 +74,5 @@ public class AffectationVo {
     public void setFirmeVo(FirmeVo firmeVo) {
         this.firmeVo = firmeVo;
     }
-    
-    
-    
+
 }

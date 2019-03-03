@@ -6,6 +6,7 @@
 package com.poussin.Firme.service;
 
 import com.poussin.Firme.bean.Firme;
+import com.poussin.Firme.rest.vo.FirmeVo;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,7 @@ public interface FirmeService {
     public List<Firme> findByPlaceRestantGreaterThan(int nbrPlace);
 
     public Firme findByName(String nomFirme);
+
+    
 
 }

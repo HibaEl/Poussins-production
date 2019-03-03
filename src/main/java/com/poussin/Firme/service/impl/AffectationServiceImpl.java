@@ -29,14 +29,19 @@ public class AffectationServiceImpl implements AffectationService {
         return affectationDao.findByFirmeReference(reference);
     }
 
+   /*  @Override
+    public Affectation findAffectationByFirme(String reference) {
+        return affectationDao.findAffectationByFirme(reference);   
+    }   */
+
     @Override
     public int creer(Affectation affectation) {
         affectation.setDateAffectation(new Date());
         affectationDao.save(affectation);
         return 1;
     }
-    
-     public void saveAffectation(Firme firme) {
+
+    public void saveAffectation(Firme firme) {
         List<Affectation> affectations = firme.getAffectations();
         if (affectations != null && !affectations.isEmpty()) {
             for (Affectation affectation : affectations) {
@@ -45,7 +50,6 @@ public class AffectationServiceImpl implements AffectationService {
             }
         }
     }
-
 
     public AffectationDao getAffectationDao() {
         return affectationDao;

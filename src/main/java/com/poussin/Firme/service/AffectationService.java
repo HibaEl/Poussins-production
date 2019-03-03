@@ -22,5 +22,7 @@ public interface AffectationService {
     public int creer(Affectation affectation);
 
     public void saveAffectation(Firme firme);
+    
+    //public Affectation findAffectationByFirme(String reference);
 
 }

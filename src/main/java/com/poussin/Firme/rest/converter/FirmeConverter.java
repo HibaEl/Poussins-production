@@ -5,17 +5,20 @@
  */
 package com.poussin.Firme.rest.converter;
 
+import com.poussin.Firme.bean.Affectation;
 import com.poussin.Firme.bean.Firme;
 import com.poussin.Firme.rest.vo.FirmeVo;
 import com.poussin.Firme.util.NumberUtil;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Elitebook folio
  */
-public class FirmeConverter implements AbstractConverter<Firme, FirmeVo> {
-
+@Component
+public class FirmeConverter extends AbstractConverter<Firme, FirmeVo> {
+    
     @Override
     public Firme toItem(FirmeVo vo) {
         if (vo == null) {
@@ -30,19 +33,29 @@ public class FirmeConverter implements AbstractConverter<Firme, FirmeVo> {
             item.setReference(vo.getReference());
             item.setTotalPoussin(NumberUtil.toInt(vo.getTotalPoussin()));
             item.setId(vo.getId());
+            item.setAffectations(new AffectationConverter().toItem(vo.getAffectationVo()));
             return item;
         }
-
+        
     }
-
+    
     @Override
     public FirmeVo toVo(Firme item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (item == null) {
+            return null;
+        } else {
+            FirmeVo vo = new FirmeVo();
+            vo.setId(item.getId());
+            vo.setNom(vo.getNom());
+            vo.setCapacite(NumberUtil.toString(item.getCapacite()));
+            vo.setNbrPoussinFemale(NumberUtil.toString(item.getNbrPoussinFemale()));
+            vo.setNbrPoussinMale(NumberUtil.toString(item.getNbrPoussinMale()));
+            vo.setPlaceRestant(NumberUtil.toString(item.getPlaceRestant()));
+            vo.setReference(item.getReference());
+            vo.setTotalPoussin(NumberUtil.toString(item.getTotalPoussin()));
+            vo.setAffectationVo(new AffectationConverter().toVo(item.getAffectations()));
+            return vo;
+        }
     }
-
-    @Override
-    public List<Firme> toItem(List<FirmeVo> vos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
 }

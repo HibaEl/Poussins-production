@@ -33,8 +33,6 @@ public class Affectation implements Serializable {
     private String referenceImport;
     @ManyToOne
     private Firme firme;
-    
-    
 
     public int getNbrMale() {
         return nbrMale;
