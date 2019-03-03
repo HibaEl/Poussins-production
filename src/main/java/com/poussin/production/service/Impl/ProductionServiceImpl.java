@@ -7,10 +7,12 @@ package com.poussin.production.service.Impl;
 
 import com.poussin.production.bean.Production;
 import com.poussin.production.dao.ProductionDao;
+import com.poussin.production.rest.proxy.FirmeProxy;
 import com.poussin.production.service.ProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -23,6 +25,8 @@ public class ProductionServiceImpl implements ProductionService {
     private ProductionDao productionDao;
     @Autowired
     private ProductionService productionService;
+    @Autowired
+    private FirmeProxy firmeeProxy;
 
     @Override
     public int createProduction(Production production) {
@@ -30,17 +34,20 @@ public class ProductionServiceImpl implements ProductionService {
         if (p != null) {
             return -1;
         } else {
-
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(production.getDateProduction());
-            int week = cal.get(Calendar.WEEK_OF_YEAR);
-            int year = cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
-            production.setSemaineProduction(week);
-            production.setMoisProduction(month + 1);
-            production.setAnneeProduction(year);
-            productionDao.save(production);
-            return 1;
+            if (validateFirme(production.getRefFirme())) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(production.getDateProduction());
+                int week = cal.get(Calendar.WEEK_OF_YEAR);
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                production.setSemaineProduction(week);
+                production.setMoisProduction(month + 1);
+                production.setAnneeProduction(year);
+                productionDao.save(production);
+                return 1;
+            } else {
+                return -3;
+            }
         }
     }
 
@@ -60,6 +67,18 @@ public class ProductionServiceImpl implements ProductionService {
         return productionDao.averageNbrOeuf(anneeO, refFirmeO, semaineO);
     }
 
+    private boolean validateFirme(String refFirme) {
+        if (refFirme == null) {
+            return false;
+        } else {
+            if (firmeeProxy.findByReference(refFirme) != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     public ProductionDao getProductionDao() {
         return productionDao;
     }
@@ -74,6 +93,14 @@ public class ProductionServiceImpl implements ProductionService {
 
     public void setProductionService(ProductionService productionService) {
         this.productionService = productionService;
+    }
+
+    public FirmeProxy getFirmeeProxy() {
+        return firmeeProxy;
+    }
+
+    public void setFirmeeProxy(FirmeProxy firmeeProxy) {
+        this.firmeeProxy = firmeeProxy;
     }
 
 }
