@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 public class FirmeServiceImpl implements FirmeService {
 
     @Autowired
-    private FirmeDao firmeDao;
+    private FirmeDao  firmeDao;
 
     @Autowired
     private AffectationService affectationService;
