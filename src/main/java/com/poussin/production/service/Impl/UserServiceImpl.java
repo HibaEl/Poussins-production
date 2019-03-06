@@ -5,32 +5,35 @@
  */
 package com.poussin.production.service.Impl;
 
+import com.poussin.production.bean.Role;
 import com.poussin.production.bean.User;
+import com.poussin.production.bean.UserRole;
 import com.poussin.production.dao.UserDao;
+import com.poussin.production.dao.UserRoleDao;
+import com.poussin.production.service.UserRoleService;
 import com.poussin.production.service.UserService;
+import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author LENOVO
- */@Service
-public class UserServiceImpl implements UserService{
+ */
+@Service
+public class UserServiceImpl implements UserService {
+
     @Autowired
-     private UserDao userDao;
+    private UserDao userDao;
+    @Autowired
+    private UserRoleDao userRoleDao;
+    @Autowired
+    private UserRoleService userRoleService;
 
-    public UserDao getUserDao() {
-        return userDao;
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-    
-    
     @Override
     public int seconnecter(String login, String passeword) {
-         User user = findByLogin(login);
+        User user = findByLogin(login);
         if (user == null) {
             return -1;
         } else if (user.getBloquer() == 1) {
@@ -44,9 +47,9 @@ public class UserServiceImpl implements UserService{
                 userDao.save(user);
                 return -3;
             }
-                userDao.save(user);
+            userDao.save(user);
 
-                return -4;
+            return -4;
         } else {
             return 1;
         }
@@ -54,20 +57,45 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User findByLogin(String login) {
-      return userDao.findByLogin(login);
+        return userDao.findByLogin(login);
     }
 
     @Override
-    public int createUser(User user) {
-  User u=findByLogin(user.getLogin());
-  if(u!=null){
-  return -1;
-}
-else{
-  userDao.save(user);
-  return 1;
-}
-
+    public int createUser(User user,  List<UserRole> UserRoles) {
+        User u = findByLogin(user.getLogin());
+        if (u != null) {
+            return -1;
+        } else {
+            user.setBloquer(0);
+            user.setNbConexion(3);
+            userDao.save(user);
+            userRoleService.createUserRole(user, UserRoles);
+            return 1;
+        }
     }
-    
+
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public UserRoleDao getUserRoleDao() {
+        return userRoleDao;
+    }
+
+    public void setUserRoleDao(UserRoleDao userRoleDao) {
+        this.userRoleDao = userRoleDao;
+    }
+
+    public UserRoleService getUserRoleService() {
+        return userRoleService;
+    }
+
+    public void setUserRoleService(UserRoleService userRoleService) {
+        this.userRoleService = userRoleService;
+    }
+
 }

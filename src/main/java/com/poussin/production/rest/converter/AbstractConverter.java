@@ -16,5 +16,6 @@ public interface AbstractConverter<T, VO> {
     public T toItem(VO vo);
     public VO toVo(T item);
     public List<VO> toVo(List<T> vos);
+    public List<T> toItem(List<VO> items);
 
 }

@@ -6,6 +6,7 @@
 package com.poussin.production.rest.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -13,12 +14,14 @@ import java.io.Serializable;
  */
 public class UserVo implements Serializable {
   private static final long serialVersionUID = 1L;
+  
     private String login;
     private String password;
+    private String gmail;
     private String nbConexion;
     private String bloquer;
     private String reference;
-    private UserRoleVo roleVo;
+    private List<UserRoleVo> userRoleVos;
 
     public String getReference() {
         return reference;
@@ -60,15 +63,21 @@ public class UserVo implements Serializable {
         this.bloquer = bloquer;
     }
 
-   
 
-    public UserRoleVo getRoleVo() {
-        return roleVo;
+    public String getGmail() {
+        return gmail;
     }
 
-    public void setRoleVo(UserRoleVo roleVo) {
-        this.roleVo = roleVo;
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
-    
+
+    public List<UserRoleVo> getUserRoleVos() {
+        return userRoleVos;
+    }
+
+    public void setUserRoleVos(List<UserRoleVo> userRoleVos) {
+        this.userRoleVos = userRoleVos;
+    }    
     
 }

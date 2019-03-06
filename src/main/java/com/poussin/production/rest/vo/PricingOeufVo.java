@@ -6,7 +6,6 @@
 package com.poussin.production.rest.vo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *

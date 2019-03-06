@@ -23,11 +23,12 @@ public class UserVoConverter implements AbstractConverter<User, UserVo> {
         if (userVo != null) {
 
             user.setLogin(userVo.getLogin());
+            user.setGmail(userVo.getGmail());
             user.setBloquer(NumberUtil.toInteger(userVo.getBloquer()));
             user.setNbConexion(NumberUtil.toInteger(userVo.getNbConexion()));
             user.setPassword(userVo.getPassword());
-            user.setRole(new UserRoleVoConverter().toItem(userVo.getRoleVo()));
             user.setReference(userVo.getReference());
+            user.setUserRoles(new UserRoleVoConverter().toItem(userVo.getUserRoleVos()));
         }
 
         return user;
@@ -40,12 +41,13 @@ public class UserVoConverter implements AbstractConverter<User, UserVo> {
         if (user != null) {
 
             userVo.setReference(user.getReference());
+            userVo.setGmail(user.getGmail());
             userVo.setBloquer(NumberUtil.toStringInt(user.getBloquer()));
             userVo.setLogin(user.getLogin());
             userVo.setNbConexion(NumberUtil.toStringInt(user.getNbConexion()));
             userVo.setPassword(user.getPassword());
-            userVo.setRoleVo(new UserRoleVoConverter().toVo(user.getRole()));
             userVo.setReference(user.getReference());
+            userVo.setUserRoleVos(new UserRoleVoConverter().toVo(user.getUserRoles()));
         }
 
         return userVo;
@@ -60,5 +62,16 @@ public class UserVoConverter implements AbstractConverter<User, UserVo> {
             }
         }
         return userVos;
+    }
+
+    @Override
+    public List<User> toItem(List<UserVo> userVos) {
+       List<User> users = new ArrayList();
+         if (userVos != null && !userVos.isEmpty()) {
+        for (UserVo userVo : userVos) {
+            users.add(toItem(userVo));
+        }
+      
+    }return users;
     }
 }

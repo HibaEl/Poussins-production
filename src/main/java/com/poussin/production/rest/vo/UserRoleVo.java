@@ -12,24 +12,45 @@ import java.io.Serializable;
  * @author LENOVO
  */
 public class UserRoleVo implements Serializable {
-     private static final long serialVersionUID = 1L;
-       private String reference;
-       private String libelle;
 
-    public String getReference() {
-        return reference;
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private UserVo userVo;
+    private RoleVo roleVo;
+    private String dateAffectation;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public UserVo getUserVo() {
+        return userVo;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setUserVo(UserVo userVo) {
+        this.userVo = userVo;
     }
-    
+
+    public RoleVo getRoleVo() {
+        return roleVo;
+    }
+
+    public void setRoleVo(RoleVo roleVo) {
+        this.roleVo = roleVo;
+    }
+
+    public String getDateAffectation() {
+        return dateAffectation;
+    }
+
+    public void setDateAffectation(String dateAffectation) {
+        this.dateAffectation = dateAffectation;
+    }
+
+   
+
 }

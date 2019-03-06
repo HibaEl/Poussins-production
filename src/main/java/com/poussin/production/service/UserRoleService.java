@@ -5,7 +5,6 @@
  */
 package com.poussin.production.service;
 
-import com.poussin.production.bean.Role;
 import com.poussin.production.bean.User;
 import com.poussin.production.bean.UserRole;
 import java.util.List;
@@ -14,12 +13,6 @@ import java.util.List;
  *
  * @author LENOVO
  */
-public interface UserService {
-
-    public User findByLogin(String login);
-
-    public int createUser(User user, List<UserRole> userRoles);
-
-    public int seconnecter(String login, String passeword);
-
+public interface UserRoleService {
+    public int createUserRole(User user ,List<UserRole>userRoles);
 }

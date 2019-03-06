@@ -59,4 +59,14 @@ public class PricingOeufVoconverter implements AbstractConverter<PricingOeuf, Pr
         return pricingOeufVos;
     }
 
+    @Override
+    public List<PricingOeuf> toItem(List<PricingOeufVo> pricingOeufVos) {
+ List<PricingOeuf> pricingOeufs = new ArrayList();
+        if (pricingOeufVos != null && !pricingOeufVos.isEmpty()) {
+            for (PricingOeufVo pricingOeufVo : pricingOeufVos) {
+                pricingOeufs.add(toItem(pricingOeufVo));
+            }
+        }
+        return pricingOeufs;    }
+
 }

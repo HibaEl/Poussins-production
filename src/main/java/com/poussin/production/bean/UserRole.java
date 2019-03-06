@@ -6,11 +6,16 @@
 package com.poussin.production.bean;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -19,12 +24,18 @@ import javax.persistence.Id;
 @Entity
 public class UserRole implements Serializable {
 
+    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String reference;
-    private String libelle;
+    @ManyToOne
+    private User user;
+    @OneToOne
+    private Role role;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateAffectation;
 
     public Long getId() {
         return id;
@@ -34,62 +45,28 @@ public class UserRole implements Serializable {
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public User getUser() {
+        return user;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getReference() {
-        return reference;
+    public Role getRole() {
+        return role;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.id);
-        hash = 83 * hash + Objects.hashCode(this.reference);
-        hash = 83 * hash + Objects.hashCode(this.libelle);
-        return hash;
+    public Date getDateAffectation() {
+        return dateAffectation;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final UserRole other = (UserRole) obj;
-        if (!Objects.equals(this.reference, other.reference)) {
-            return false;
-        }
-        if (!Objects.equals(this.libelle, other.libelle)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+    public void setDateAffectation(Date dateAffectation) {
+        this.dateAffectation = dateAffectation;
     }
 
-    @Override
-    public String toString() {
-        return "UserRole{" + "id=" + id + ", reference=" + reference + ", libelle=" + libelle + '}';
-    }
-
-    
-
-
-    
 }

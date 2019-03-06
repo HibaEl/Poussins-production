@@ -16,6 +16,7 @@ import java.util.List;
  *
  * @author LENOVO
  */
+
 public class ProductionVoConverter implements AbstractConverter<Production, ProductionVo> {
 
     @Override
@@ -73,5 +74,15 @@ public class ProductionVoConverter implements AbstractConverter<Production, Prod
         }
         return productionVos;
     }
+
+    @Override
+    public List<Production> toItem(List<ProductionVo> productionVos) {
+ List<Production> productions = new ArrayList();
+        if (productionVos != null && !productionVos.isEmpty()) {
+            for (ProductionVo productionVo : productionVos) {
+                productions.add(toItem(productionVo));
+            }
+        }
+        return productions;    }
 
 }

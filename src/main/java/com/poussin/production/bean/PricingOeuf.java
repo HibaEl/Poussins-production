@@ -74,52 +74,5 @@ public class PricingOeuf implements Serializable {
         this.prix = prix;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.id);
-        hash = 61 * hash + Objects.hashCode(this.reference);
-        hash = 61 * hash + Objects.hashCode(this.dateMin);
-        hash = 61 * hash + Objects.hashCode(this.dateMax);
-        hash = 61 * hash + (int) (Double.doubleToLongBits(this.prix) ^ (Double.doubleToLongBits(this.prix) >>> 32));
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final PricingOeuf other = (PricingOeuf) obj;
-        if (Double.doubleToLongBits(this.prix) != Double.doubleToLongBits(other.prix)) {
-            return false;
-        }
-        if (!Objects.equals(this.reference, other.reference)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.dateMin, other.dateMin)) {
-            return false;
-        }
-        if (!Objects.equals(this.dateMax, other.dateMax)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "PricingOeuf{" + "id=" + id + ", reference=" + reference + ", dateMin=" + dateMin + ", dateMax=" + dateMax + ", prix=" + prix + '}';
-    }
-
-    
     
 }
