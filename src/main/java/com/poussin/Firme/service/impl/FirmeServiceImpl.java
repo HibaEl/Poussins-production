@@ -22,10 +22,15 @@ import org.springframework.stereotype.Service;
 public class FirmeServiceImpl implements FirmeService {
 
     @Autowired
-    private FirmeDao  firmeDao;
+    private FirmeDao firmeDao;
 
     @Autowired
     private AffectationService affectationService;
+
+    @Override
+    public List<Firme> findAll() {
+        return firmeDao.findAll();
+    }
 
     @Override
     public Firme findByReference(String reference) {
