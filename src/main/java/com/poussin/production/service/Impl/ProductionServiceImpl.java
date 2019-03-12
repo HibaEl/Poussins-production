@@ -7,12 +7,15 @@ package com.poussin.production.service.Impl;
 
 import com.poussin.production.bean.Production;
 import com.poussin.production.dao.ProductionDao;
+import com.poussin.production.rest.converter.ProductionVoConverter;
 import com.poussin.production.rest.proxy.FirmeProxy;
+import com.poussin.production.rest.vo.ProductionVo;
 import com.poussin.production.service.ProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -21,6 +24,7 @@ import java.util.Date;
 @Service
 public class ProductionServiceImpl implements ProductionService {
 
+    
     @Autowired
     private ProductionDao productionDao;
     @Autowired
@@ -79,6 +83,11 @@ public class ProductionServiceImpl implements ProductionService {
         }
     }
 
+    @Override
+    public List<Production> findByRefFirmeAndSemaineProductionAndAnneeProduction(String refFirme, Integer semaine, Integer anneeProduction) {
+    return productionDao.findByRefFirmeAndSemaineProductionAndAnneeProduction(refFirme, semaine, anneeProduction);
+    }
+
     public ProductionDao getProductionDao() {
         return productionDao;
     }
@@ -102,5 +111,7 @@ public class ProductionServiceImpl implements ProductionService {
     public void setFirmeeProxy(FirmeProxy firmeeProxy) {
         this.firmeeProxy = firmeeProxy;
     }
+
+    
 
 }

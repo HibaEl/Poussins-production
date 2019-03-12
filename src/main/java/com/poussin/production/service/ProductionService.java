@@ -6,6 +6,7 @@
 package com.poussin.production.service;
 
 import com.poussin.production.bean.Production;
+import java.util.List;
 
 /**
  *
@@ -14,6 +15,8 @@ import com.poussin.production.bean.Production;
 public interface ProductionService {
 
     public Production findByReference(String reference);
+
+    public List<Production> findByRefFirmeAndSemaineProductionAndAnneeProduction(String refFirme,Integer semaine,Integer anneeProduction);
 
     public int createProduction(Production production);
 

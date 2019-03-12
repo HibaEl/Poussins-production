@@ -5,14 +5,12 @@
  */
 package com.poussin.production.service.Impl;
 
-import com.poussin.production.bean.Role;
 import com.poussin.production.bean.User;
 import com.poussin.production.bean.UserRole;
 import com.poussin.production.dao.UserDao;
 import com.poussin.production.dao.UserRoleDao;
 import com.poussin.production.service.UserRoleService;
 import com.poussin.production.service.UserService;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,7 +71,16 @@ public class UserServiceImpl implements UserService {
             return 1;
         }
     }
-
+@Override
+    public int motDePasseOublier(String Login) {
+        User user=userDao.findByLogin(Login);
+        if(user==null)return -1;
+        else{
+        String gmail=user.getGmail();
+        String password=user.getPassword();
+        return 1;
+        }
+    }
     public UserDao getUserDao() {
         return userDao;
     }
@@ -97,5 +104,7 @@ public class UserServiceImpl implements UserService {
     public void setUserRoleService(UserRoleService userRoleService) {
         this.userRoleService = userRoleService;
     }
+
+    
 
 }

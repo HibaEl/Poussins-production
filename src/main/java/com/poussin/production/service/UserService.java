@@ -21,5 +21,7 @@ public interface UserService {
     public int createUser(User user, List<UserRole> userRoles);
 
     public int seconnecter(String login, String passeword);
+    
+    public int motDePasseOublier(String Login);
 
 }

@@ -8,12 +8,12 @@ package com.poussin.production.rest;
 /**
  *
  * @author LENOVO
- */ 
-
+ */
 import com.poussin.production.bean.Production;
 import com.poussin.production.rest.converter.ProductionVoConverter;
 import com.poussin.production.rest.vo.ProductionVo;
 import com.poussin.production.service.ProductionService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,35 +28,45 @@ import org.springframework.web.bind.annotation.RestController;
  * @author LENOVO
  */
 @RestController
-@CrossOrigin(origins={"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping({"/production/productions"})
 public class ProductionRest {
-     @Autowired
-     private ProductionService productionService;
-    
-   
-@PostMapping("/")
+
+    @Autowired
+    private ProductionService productionService;
+
+    @GetMapping("/refFirme/{refFirme}/semaineProduction/{semaine}/anneeProduction/{annee}")
+    public List< ProductionVo> findByRefFirmeAndSemaineProductionAndAnneeProduction( @PathVariable String refFirme,@PathVariable Integer semaine,@PathVariable Integer annee) {
+        return new ProductionVoConverter().toVo(productionService.findByRefFirmeAndSemaineProductionAndAnneeProduction(refFirme, semaine, annee));
+    }
+
+    @GetMapping("/reference/{reference}")
+    public ProductionVo findByReference(@PathVariable String reference) {
+        return new ProductionVoConverter().toVo(productionService.findByReference(reference));
+    }
+
+    @PostMapping("/")
     public int createProduction(@RequestBody ProductionVo productionVo) {
-        Production production= new ProductionVoConverter().toItem(productionVo);
+        Production production = new ProductionVoConverter().toItem(productionVo);
         return productionService.createProduction(production);
     }
-@GetMapping("/semaineProduction/{semaine}/refFirme/{refFirme}/anneeProduction/{annee}")
-    public Double averagePoids(@PathVariable Integer semaine,@PathVariable String refFirme,@PathVariable Integer annee) {
-        return productionService.averagePoids(semaine,refFirme,annee);
+
+    @GetMapping("/semaineProduction/{semaine}/refFirme/{refFirme}/anneeProduction/{annee}")
+    public Double averagePoids(@PathVariable Integer semaine, @PathVariable String refFirme, @PathVariable Integer annee) {
+        return productionService.averagePoids(semaine, refFirme, annee);
     }
-@GetMapping("/anneeO/{anneeO}/refFirmeO/{refFirmeO}/semaineO/{semaineO}")
-    public Double averageNbrOeuf(@PathVariable Integer anneeO,@PathVariable String refFirmeO,@PathVariable Integer semaineO) {
+
+    @GetMapping("/anneeO/{anneeO}/refFirmeO/{refFirmeO}/semaineO/{semaineO}")
+    public Double averageNbrOeuf(@PathVariable Integer anneeO, @PathVariable String refFirmeO, @PathVariable Integer semaineO) {
         return productionService.averageNbrOeuf(anneeO, refFirmeO, semaineO);
     }
-    
-    
-     public ProductionService getProductionService() {
+
+    public ProductionService getProductionService() {
         return productionService;
     }
 
     public void setProductionService(ProductionService productionService) {
         this.productionService = productionService;
     }
-     
-    
+
 }

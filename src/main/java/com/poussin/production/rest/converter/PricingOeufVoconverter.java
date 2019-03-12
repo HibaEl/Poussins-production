@@ -11,11 +11,13 @@ import com.poussin.production.commun.util.NumberUtil;
 import com.poussin.production.rest.vo.PricingOeufVo;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author LENOVO
  */
+@Component
 public class PricingOeufVoconverter implements AbstractConverter<PricingOeuf, PricingOeufVo> {
 
     @Override

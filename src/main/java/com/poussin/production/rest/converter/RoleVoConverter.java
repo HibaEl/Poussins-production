@@ -9,11 +9,13 @@ import com.poussin.production.bean.Role;
 import com.poussin.production.rest.vo.RoleVo;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author LENOVO
  */
+@Component
 public class RoleVoConverter implements AbstractConverter<Role, RoleVo> {
 
     @Override

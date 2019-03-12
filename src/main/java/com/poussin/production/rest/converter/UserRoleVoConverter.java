@@ -10,12 +10,14 @@ import com.poussin.production.commun.util.DateUtil;
 import com.poussin.production.rest.vo.UserRoleVo;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 
 /**
  *
  * @author LENOVO
  */
+@Component
 public class UserRoleVoConverter implements AbstractConverter<UserRole, UserRoleVo> {
 
     @Override
