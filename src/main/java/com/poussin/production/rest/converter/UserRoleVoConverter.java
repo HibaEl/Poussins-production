@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author LENOVO
  */
 @Component
-public class UserRoleVoConverter implements AbstractConverter<UserRole, UserRoleVo> {
+public class UserRoleVoConverter extends AbstractConverter<UserRole, UserRoleVo> {
 
     @Override
     public UserRole toItem(UserRoleVo userRoleVo) {
@@ -47,27 +47,7 @@ public class UserRoleVoConverter implements AbstractConverter<UserRole, UserRole
         return userRoleVo;
     }
 
-    @Override
-    public List<UserRoleVo> toVo(List<UserRole> userRoles) {
-  List<UserRoleVo> userRoleVos = new ArrayList();
-        if (userRoles != null && !userRoles.isEmpty()) {
-            for (UserRole userRole : userRoles) {
-                userRoleVos.add(toVo(userRole));
-            }
-        }
-        return userRoleVos;    }
 
-    
-      @Override
-    public List<UserRole> toItem(List<UserRoleVo> userRoleVos) {
- List<UserRole> userRoles = new ArrayList();
-         if (userRoleVos != null && !userRoleVos.isEmpty()) {
-        for (UserRoleVo userRoleVo : userRoleVos) {
-            userRoles.add(toItem(userRoleVo));
-        }
-      
-    }return userRoles;
-}
 }
 
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.poussin.production.rest;
 
 /**
@@ -10,11 +5,14 @@ package com.poussin.production.rest;
  * @author LENOVO
  */
 import com.poussin.production.bean.Production;
+import com.poussin.production.rest.converter.AbstractConverter;
 import com.poussin.production.rest.converter.ProductionVoConverter;
 import com.poussin.production.rest.vo.ProductionVo;
+import com.poussin.production.rest.vo.RechercheProductionVo;
 import com.poussin.production.service.ProductionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,9 +33,14 @@ public class ProductionRest {
     @Autowired
     private ProductionService productionService;
 
-    @GetMapping("/refFirme/{refFirme}/semaineProduction/{semaine}/anneeProduction/{annee}")
-    public List< ProductionVo> findByRefFirmeAndSemaineProductionAndAnneeProduction( @PathVariable String refFirme,@PathVariable Integer semaine,@PathVariable Integer annee) {
-        return new ProductionVoConverter().toVo(productionService.findByRefFirmeAndSemaineProductionAndAnneeProduction(refFirme, semaine, annee));
+    @Autowired
+    @Qualifier("productionVoConverter")
+    private AbstractConverter<Production, ProductionVo> productionVoConverter;
+
+    @PostMapping("/recherche")
+    public List< ProductionVo> findByRefFirmeAndSemaineProductionAndAnneeProduction(@RequestBody RechercheProductionVo rechercheProductionVo) {
+        final List<Production> productions = productionService.findByRefFirmeAndSemaineProductionAndAnneeProduction(rechercheProductionVo.getRefFirme(), new Integer(rechercheProductionVo.getSemaine()), new Integer(rechercheProductionVo.getAnnee()));
+        return productionVoConverter.toVo(productions);
     }
 
     @GetMapping("/reference/{reference}")
@@ -67,6 +70,14 @@ public class ProductionRest {
 
     public void setProductionService(ProductionService productionService) {
         this.productionService = productionService;
+    }
+
+    public AbstractConverter<Production, ProductionVo> getProductionVoConverter() {
+        return productionVoConverter;
+    }
+
+    public void setProductionVoConverter(AbstractConverter<Production, ProductionVo> productionVoConverter) {
+        this.productionVoConverter = productionVoConverter;
     }
 
 }

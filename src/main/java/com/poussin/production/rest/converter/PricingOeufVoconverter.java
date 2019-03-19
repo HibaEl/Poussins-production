@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author LENOVO
  */
 @Component
-public class PricingOeufVoconverter implements AbstractConverter<PricingOeuf, PricingOeufVo> {
+public class PricingOeufVoconverter extends AbstractConverter<PricingOeuf, PricingOeufVo> {
 
     @Override
     public PricingOeuf toItem(PricingOeufVo pricingOeufVo) {
@@ -50,25 +50,6 @@ public class PricingOeufVoconverter implements AbstractConverter<PricingOeuf, Pr
         return pricingOeufVo;
     }
 
-    @Override
-    public List<PricingOeufVo> toVo(List<PricingOeuf> pricingOeufs) {
-        List<PricingOeufVo> pricingOeufVos = new ArrayList();
-        if (pricingOeufs != null && !pricingOeufs.isEmpty()) {
-            for (PricingOeuf pricingOeuf : pricingOeufs) {
-                pricingOeufVos.add(toVo(pricingOeuf));
-            }
-        }
-        return pricingOeufVos;
-    }
-
-    @Override
-    public List<PricingOeuf> toItem(List<PricingOeufVo> pricingOeufVos) {
- List<PricingOeuf> pricingOeufs = new ArrayList();
-        if (pricingOeufVos != null && !pricingOeufVos.isEmpty()) {
-            for (PricingOeufVo pricingOeufVo : pricingOeufVos) {
-                pricingOeufs.add(toItem(pricingOeufVo));
-            }
-        }
-        return pricingOeufs;    }
+    
 
 }

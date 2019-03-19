@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author LENOVO
  */
 @Component
-public class ProductionVoConverter implements AbstractConverter<Production, ProductionVo> {
+public class ProductionVoConverter extends AbstractConverter<Production, ProductionVo> {
 
     @Override
     public Production toItem(ProductionVo productionVo) {
@@ -65,25 +65,5 @@ public class ProductionVoConverter implements AbstractConverter<Production, Prod
         return productionVo;
     }
 
-    @Override
-    public List<ProductionVo> toVo(List<Production> productions) {
-        List<ProductionVo> productionVos = new ArrayList();
-        if (productions != null && !productions.isEmpty()) {
-            for (Production production : productions) {
-                productionVos.add(toVo(production));
-            }
-        }
-        return productionVos;
-    }
-
-    @Override
-    public List<Production> toItem(List<ProductionVo> productionVos) {
- List<Production> productions = new ArrayList();
-        if (productionVos != null && !productionVos.isEmpty()) {
-            for (ProductionVo productionVo : productionVos) {
-                productions.add(toItem(productionVo));
-            }
-        }
-        return productions;    }
-
+   
 }

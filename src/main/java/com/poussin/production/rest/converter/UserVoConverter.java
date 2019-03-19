@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @author LENOVO
  */
 @Component
-public class UserVoConverter implements AbstractConverter<User, UserVo> {
+public class UserVoConverter extends AbstractConverter<User, UserVo> {
 
     @Override
     public User toItem(UserVo userVo) {
@@ -55,25 +55,5 @@ public class UserVoConverter implements AbstractConverter<User, UserVo> {
         return userVo;
     }
 
-    @Override
-    public List<UserVo> toVo(List<User> users) {
-        List<UserVo> userVos = new ArrayList();
-        if (users != null && !users.isEmpty()) {
-            for (User user : users) {
-                userVos.add(toVo(user));
-            }
-        }
-        return userVos;
-    }
-
-    @Override
-    public List<User> toItem(List<UserVo> userVos) {
-       List<User> users = new ArrayList();
-         if (userVos != null && !userVos.isEmpty()) {
-        for (UserVo userVo : userVos) {
-            users.add(toItem(userVo));
-        }
-      
-    }return users;
-    }
+ 
 }

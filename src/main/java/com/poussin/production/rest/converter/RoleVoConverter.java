@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author LENOVO
  */
 @Component
-public class RoleVoConverter implements AbstractConverter<Role, RoleVo> {
+public class RoleVoConverter extends AbstractConverter<Role, RoleVo> {
 
     @Override
     public Role toItem(RoleVo RoleVo) {
