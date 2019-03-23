@@ -8,6 +8,7 @@ package com.poussin.production.service.Impl;
 import com.poussin.production.bean.Production;
 import com.poussin.production.dao.ProductionDao;
 import com.poussin.production.rest.converter.ProductionVoConverter;
+import com.poussin.production.rest.proxy.EvolutionProxy;
 import com.poussin.production.rest.proxy.FirmeProxy;
 import com.poussin.production.rest.vo.ProductionVo;
 import com.poussin.production.service.ProductionService;
@@ -31,6 +32,8 @@ public class ProductionServiceImpl implements ProductionService {
     private ProductionService productionService;
     @Autowired
     private FirmeProxy firmeeProxy;
+    @Autowired
+    private EvolutionProxy evolutionProxy;
 
     @Override
     public int createProduction(Production production) {
@@ -38,7 +41,7 @@ public class ProductionServiceImpl implements ProductionService {
         if (p != null) {
             return -1;
         } else {
-            if (validateFirme(production.getRefFirme())) {
+            if (validateFirme(production.getRefFirme())&& validateEvolution(production.getRefEvolution())) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(production.getDateProduction());
                 int week = cal.get(Calendar.WEEK_OF_YEAR);
@@ -82,12 +85,25 @@ public class ProductionServiceImpl implements ProductionService {
             }
         }
     }
-
+private boolean validateEvolution(String refEvolution) {
+        if (refEvolution == null) {
+            return false;
+        } else {
+            if (evolutionProxy.findByReference(refEvolution) != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
     @Override
     public List<Production> findByRefFirmeAndSemaineProductionAndAnneeProduction(String refFirme, Integer semaine, Integer anneeProduction) {
     return productionDao.findByRefFirmeAndSemaineProductionAndAnneeProduction(refFirme, semaine, anneeProduction);
     }
-
+ @Override
+    public List<Production> findAll() {
+   return productionDao.findAll();
+    }
     public ProductionDao getProductionDao() {
         return productionDao;
     }
@@ -111,6 +127,16 @@ public class ProductionServiceImpl implements ProductionService {
     public void setFirmeeProxy(FirmeProxy firmeeProxy) {
         this.firmeeProxy = firmeeProxy;
     }
+
+    public EvolutionProxy getEvolutionProxy() {
+        return evolutionProxy;
+    }
+
+    public void setEvolutionProxy(EvolutionProxy evolutionProxy) {
+        this.evolutionProxy = evolutionProxy;
+    }
+
+   
 
     
 

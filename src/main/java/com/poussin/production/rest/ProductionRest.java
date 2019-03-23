@@ -7,8 +7,10 @@ package com.poussin.production.rest;
 import com.poussin.production.bean.Production;
 import com.poussin.production.rest.converter.AbstractConverter;
 import com.poussin.production.rest.converter.ProductionVoConverter;
+import com.poussin.production.rest.proxy.EvolutionProxy;
 import com.poussin.production.rest.vo.ProductionVo;
 import com.poussin.production.rest.vo.RechercheProductionVo;
+import com.poussin.production.rest.vo.exchange.EvolutionVo;
 import com.poussin.production.service.ProductionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +44,19 @@ public class ProductionRest {
         final List<Production> productions = productionService.findByRefFirmeAndSemaineProductionAndAnneeProduction(rechercheProductionVo.getRefFirme(), new Integer(rechercheProductionVo.getSemaine()), new Integer(rechercheProductionVo.getAnnee()));
         return productionVoConverter.toVo(productions);
     }
+@GetMapping("/all")
+    public List<ProductionVo> findAll() {
+        final List<Production> productions=productionService.findAll();
+        return  productionVoConverter.toVo(productions);
+    }
+    
 
     @GetMapping("/reference/{reference}")
     public ProductionVo findByReference(@PathVariable String reference) {
         return new ProductionVoConverter().toVo(productionService.findByReference(reference));
     }
+
+  
 
     @PostMapping("/")
     public int createProduction(@RequestBody ProductionVo productionVo) {

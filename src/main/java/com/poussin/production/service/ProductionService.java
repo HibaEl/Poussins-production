@@ -15,6 +15,8 @@ import java.util.List;
 public interface ProductionService {
 
     public Production findByReference(String reference);
+    
+    public List<Production>findAll();
 
     public List<Production> findByRefFirmeAndSemaineProductionAndAnneeProduction(String refFirme,Integer semaine,Integer anneeProduction);
 
