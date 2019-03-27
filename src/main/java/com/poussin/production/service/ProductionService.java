@@ -25,4 +25,6 @@ public interface ProductionService {
     public Double averagePoids(Integer semaine, String refFirme, Integer annee);
 
     public Double averageNbrOeuf(Integer anneeO, String refFirmeO, Integer semaineO);
+    
+    public void deleteByReference(String reference);
 }

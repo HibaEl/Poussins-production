@@ -16,6 +16,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,7 +56,10 @@ public class ProductionRest {
     public ProductionVo findByReference(@PathVariable String reference) {
         return new ProductionVoConverter().toVo(productionService.findByReference(reference));
     }
-
+@DeleteMapping("/reference/{reference}")
+public void deleteByReference(@PathVariable String reference) {
+        productionService.deleteByReference(reference);
+    }
   
 
     @PostMapping("/")
@@ -63,6 +67,8 @@ public class ProductionRest {
         Production production = new ProductionVoConverter().toItem(productionVo);
         return productionService.createProduction(production);
     }
+
+    
 
     @GetMapping("/semaineProduction/{semaine}/refFirme/{refFirme}/anneeProduction/{annee}")
     public Double averagePoids(@PathVariable Integer semaine, @PathVariable String refFirme, @PathVariable Integer annee) {

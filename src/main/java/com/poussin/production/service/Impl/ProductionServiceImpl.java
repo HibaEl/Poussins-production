@@ -25,7 +25,6 @@ import java.util.List;
 @Service
 public class ProductionServiceImpl implements ProductionService {
 
-    
     @Autowired
     private ProductionDao productionDao;
     @Autowired
@@ -41,7 +40,7 @@ public class ProductionServiceImpl implements ProductionService {
         if (p != null) {
             return -1;
         } else {
-            if (validateFirme(production.getRefFirme())&& validateEvolution(production.getRefEvolution())) {
+            if (validateFirme(production.getRefFirme()) && validateEvolution(production.getRefEvolution())) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(production.getDateProduction());
                 int week = cal.get(Calendar.WEEK_OF_YEAR);
@@ -85,7 +84,8 @@ public class ProductionServiceImpl implements ProductionService {
             }
         }
     }
-private boolean validateEvolution(String refEvolution) {
+
+    private boolean validateEvolution(String refEvolution) {
         if (refEvolution == null) {
             return false;
         } else {
@@ -96,14 +96,23 @@ private boolean validateEvolution(String refEvolution) {
             }
         }
     }
+
     @Override
     public List<Production> findByRefFirmeAndSemaineProductionAndAnneeProduction(String refFirme, Integer semaine, Integer anneeProduction) {
-    return productionDao.findByRefFirmeAndSemaineProductionAndAnneeProduction(refFirme, semaine, anneeProduction);
+        return productionDao.findByRefFirmeAndSemaineProductionAndAnneeProduction(refFirme, semaine, anneeProduction);
     }
- @Override
+
+    @Override
     public List<Production> findAll() {
-   return productionDao.findAll();
+        return productionDao.findAll();
     }
+
+    @Override
+    public void deleteByReference(String reference) {
+        Production p=findByReference(reference);
+        productionDao.delete(p); 
+    }
+
     public ProductionDao getProductionDao() {
         return productionDao;
     }
@@ -135,9 +144,5 @@ private boolean validateEvolution(String refEvolution) {
     public void setEvolutionProxy(EvolutionProxy evolutionProxy) {
         this.evolutionProxy = evolutionProxy;
     }
-
-   
-
-    
 
 }

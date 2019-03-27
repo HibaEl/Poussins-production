@@ -20,6 +20,8 @@ import org.springframework.stereotype.Repository;
 public interface ProductionDao extends JpaRepository<Production, Long> {
 
     public Production findByReference(String reference);
+    
+    public void deleteByReference(String reference);
 
     public List<Production> findByRefFirmeAndSemaineProductionAndAnneeProduction(String refFirme,Integer semaine,Integer anneeProduction);
 
